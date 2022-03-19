@@ -11,6 +11,8 @@
         - run: echo 'All good'
 
     Deploy:
+      needs:
+        - Build
       strategy:
         matrix:
           environment: ['dev', 'staging', 'prod']
