@@ -10,11 +10,12 @@
       steps:
         - run: echo 'All good'
 
-    Deploy-Dev:
-#      strategy:
-#        matrix:
-#          environments: ['dev', 'staging', 'prod']
+    Deploy-${{matix.environment}}:
+      strategy:
+        matrix:
+          environment: ['dev', 'staging', 'prod']
       concurrency: dev
+      environment: ${{ matrix.environment }}
       runs-on: ubuntu-latest
 
       steps:
@@ -26,12 +27,12 @@
           env:
             GITHUB_CONTEXT: ${{ toJson(env) }}
           run: echo "$GITHUB_CONTEXT"
-    Deploy-Staging:
+#    Deploy-Staging:
 #      strategy:
 #        matrix:
 #          environments: ['dev', 'staging', 'prod']
-      concurrency: staging
-      runs-on: ubuntu-latest
-
-      steps:
-        - run: echo done
+#      concurrency: staging
+#      runs-on: ubuntu-latest
+#
+#      steps:
+#        - run: echo done
