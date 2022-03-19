@@ -17,9 +17,9 @@
       runs-on: ubuntu-latest
 
       steps:
-        - name: Dump GitHub context
+        - name: Dump job context
           env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
+            GITHUB_CONTEXT: ${{ toJson(job) }}
           run: echo "$GITHUB_CONTEXT"
         - name: Dump env context
           env:
@@ -33,11 +33,4 @@
       runs-on: ubuntu-latest
 
       steps:
-        - name: Dump GitHub context
-          env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
-          run: echo "$GITHUB_CONTEXT"
-        - name: Dump env context
-          env:
-            GITHUB_CONTEXT: ${{ toJson(env) }}
-          run: echo "$GITHUB_CONTEXT"
+        - run: echo done
