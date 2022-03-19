@@ -10,7 +10,7 @@
       steps:
         - run: echo 'All good'
 
-    Deploy-${{matix.environment}}:
+    Deploy:
       strategy:
         matrix:
           environment: ['dev', 'staging', 'prod']
