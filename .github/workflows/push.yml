@@ -1,0 +1,43 @@
+  name: Build and deploy workflow
+  on:
+    push:
+      branches:
+        - '*'
+  jobs:
+    Build:
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo 'All good'
+
+    Deploy-Dev:
+#      strategy:
+#        matrix:
+#          environments: ['dev', 'staging', 'prod']
+      concurrency: dev
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Dump GitHub context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: echo "$GITHUB_CONTEXT"
+        - name: Dump env context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(env) }}
+          run: echo "$GITHUB_CONTEXT"
+    Deploy-Staging:
+#      strategy:
+#        matrix:
+#          environments: ['dev', 'staging', 'prod']
+      concurrency: staging
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Dump GitHub context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: echo "$GITHUB_CONTEXT"
+        - name: Dump env context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(env) }}
+          run: echo "$GITHUB_CONTEXT"
