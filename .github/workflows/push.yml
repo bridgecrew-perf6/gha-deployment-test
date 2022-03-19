@@ -3,6 +3,7 @@
     push:
       branches:
         - '*'
+    workflow_run: {}
   jobs:
     Build:
       runs-on: ubuntu-latest
